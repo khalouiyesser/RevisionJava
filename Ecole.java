@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import exceptions.EtudiantExisteException;
 
 
 public class Ecole {
@@ -14,7 +12,7 @@ public class Ecole {
         this.etudiants=new Etudiant[nbMax];
 
     }
-    public void ajouterEtudiant(Etudiant e) {
+    public void ajouterEtudiant(Etudiant e) throws EtudiantExisteException {
         if (nbEtudiant < nbMax && rechercherEtudiant(e) == -1) {
             etudiants[nbEtudiant] = e;
             nbEtudiant++;
@@ -30,20 +28,7 @@ public class Ecole {
         }
         return -1; // Étudiant non trouvé, renvoyer -1
     }
-//    public boolean ajouterEtudiantCondition(Etudiant e) {
-//        if (rechercherEtudiant(e) == -1) {
-//            if (nbEtudiant < nbMax) {
-//                etudiants[nbEtudiant] = e;
-//                nbEtudiant++;
-//                return true; // L'étudiant a été ajouté avec succès.
-//            } else {
-//                System.out.println("L'école est pleine, impossible d'ajouter un nouvel étudiant.");
-//            }
-//        } else {
-//            System.out.println("Cet étudiant est déjà inscrit à l'école.");
-//        }
-//        return false; // L'étudiant n'a pas été ajouté.
-//    }
+
     float Moyen =0;
     public float getMoyenneDes3A(){
         for (int i=0; i <=nbEtudiant;i++){
@@ -51,14 +36,7 @@ public class Ecole {
         }
         return Moyen/nbEtudiant;
     }
-//    float MoyenSalaire = 0;
-//    public float getMoyenneSalaire(){
-//        for (int i=0; i <=nbEtudiant;i++){
-//            MoyenSalaire =+ etudiants[i].;
-//        }
-//        return Moyen/nbEtudiant;
-//    }
-//
+
 
     public float calculerMoyenneSalaires(){
         float sum = 0;
@@ -71,22 +49,7 @@ public class Ecole {
         }
         return sum/nbrAlt;
     }
-//    public void changerEcole(Etudiant etd, Ecole ecole){
-//        try{
-//            ecole.ajouterEtudiant(etd);
-//        }catch (EtudiantExisteException ex){
-//            System.out.println(ex);
-//
-//        }
-//    }
-//    public void changerEcole(Etudiant etd, Ecole e) throws EtudiantExisteException{
-//        try {
-//            e.ajouterEtudiant(etd);
-//        } catch (EtudiantExisteException ex) {
-//            ex.printStackTrace();
-//        }
-//        this.supprimerEtudiant(etd);
-//    }
+
 public void supprimerEtudiant(Etudiant e) {
     int index = rechercherEtudiant(e);
     etudiants[index] = null;
@@ -97,14 +60,17 @@ public void supprimerEtudiant(Etudiant e) {
     etudiants[nbEtudiant] = null;
     nbEtudiant--;
 }
-    public void changerEcole(Etudiant etd, Ecole e){
-        try {
-            e.ajouterEtudiant(etd);
-        } catch (EtudiantExisteException ex) {
-            ex.printStackTrace();
+
+
+
+        public void changerEcole(Etudiant etd, Ecole e){
+            try {
+                e.ajouterEtudiant(etd);
+            } catch (EtudiantExisteException ex) {
+                ex.printStackTrace();
+            }
+            this.supprimerEtudiant(etd);
         }
-        this.supprimerEtudiant(etd);
-    }
 
 
 
@@ -114,11 +80,7 @@ public void supprimerEtudiant(Etudiant e) {
     }
 
 
-    public class EtudiantExisteException extends Exception {
-        public EtudiantExisteException() {
-            super("L'étudiant existe déjà.");
-        }
-    }
+
 
 
 

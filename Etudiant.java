@@ -5,7 +5,7 @@ public abstract class Etudiant {
 
     protected float moyenne ;
 
-    public Etudiant (int id,String nom ,String prenom,float moyenne,boolean abscence){
+    public Etudiant (int id,String nom ,String prenom,float moyenne){
         this.id=id;
         this.nom = nom;
         this.prenom = prenom;
@@ -45,15 +45,7 @@ public abstract class Etudiant {
         this.moyenne = moyenne;
     }
 
-    public static Etudiant getE() {
-        return e;
-    }
 
-    public static void setE(Etudiant e) {
-        Etudiant.e = e;
-    }
-
-//    static Etudiant e = new Etudiant(1,"khaloui","yesser", 17.25F);
     public String toString(){
         return "id:"+ " "+id+" "+"nom:"+" "+nom+"prenom"+prenom+"moyenne"+moyenne;
     }
@@ -69,6 +61,5 @@ public abstract class Etudiant {
 
     public static void main(String[] args) {
 
-//        System.out.println(e);
     }
 }
